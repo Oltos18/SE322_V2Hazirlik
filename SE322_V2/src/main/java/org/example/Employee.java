@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Receiver (sinem)
 class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var onu konuşmamız lazım
     private String id;
     private String name;
