@@ -7,8 +7,7 @@ public class Task {
     private String taskId;
     private String description;
     private String workerComment;
-    private List<Task> subTasks;  // Composit pattern için burada olmaması lazım. Onun yerine Compositetask classında olması lazım ama silmek istemedim size sormadan
-    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
+    private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
     public enum TaskStatus{
         TODO,INPROGRESS,DONE
     }
@@ -42,12 +41,23 @@ public class Task {
         this.description = description;
     }
 
-    public List<Task> getSubTasks() {
+    public List<TaskComponent> getSubTasks() {
         return subTasks;
     }
-    public void addSubTask(Task subTask) {
-        this.subTasks.add(subTask);
+    @Override
+    public void addSubTask(TaskComponent task) {
+        subTasks.add(task);
     }
+    @Override
+    public void removeSubTask(TaskComponent task) {
+        subTasks.remove(task);
+    }
+    @Override
+    public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
+        System.out.println("Task "+ taskId+"assigned to employee:\n"+employee.getName());
+
+    }
+
 
     public boolean isAssigned() {
         return assigned;
