@@ -35,7 +35,11 @@ public class EmployeeTaskManagementSystem {
         Task subtask2 = new Task("1.2", "Analyze project requirements",25);
         task1.addSubTask(subtask1);
         task1.addSubTask(subtask2);
+        Command assignTask = new AssignTaskCommand();
+        assignTask.execute(employee1, subtask1);
+        assignTask.execute(employee2, subtask2);
 
+        System.out.println("Unassigned Tasks:\n");
         holder.showUnAssigned();
 
         // Displaying employee and task details
