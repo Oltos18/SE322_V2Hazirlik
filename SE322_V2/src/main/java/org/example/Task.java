@@ -1,7 +1,7 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 public class Task {
     private String taskId;
@@ -14,6 +14,7 @@ public class Task {
     private TaskStatus status;
     private int taskPoint;
     private ArrayList<Employee> empList;
+    private Scanner scanner;
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
@@ -23,6 +24,7 @@ public class Task {
         this.empList = new ArrayList<>();
         status = TaskStatus.TODO;
         taskPoint = point;
+        scanner = new Scanner(System.in);
     }
 
 
@@ -41,7 +43,12 @@ public class Task {
         this.description = description;
     }
 
+<<<<<<< Updated upstream
     public List<TaskComponent> getSubTasks() {
+=======
+
+    public List<Task> getSubTasks() {
+>>>>>>> Stashed changes
         return subTasks;
     }
     @Override
@@ -140,6 +147,55 @@ public class Task {
     public void addEmp(Employee emp){
         empList.add(emp);
     }
+
+    //When manager want to update description it should use this
+    public void setDescription(){
+        System.out.println("Please enter new description");
+        String newDescription = scanner.nextLine();
+        description = newDescription;
+    }
+
+    //when manager wanted to update  empList it should
+    public void UpdateWorker(){
+        System.out.println("What do you want yo do?\n1-Add\n2-Delete");
+        int choice = getIndex();
+        if (choice == 1){
+            EmployeeHolder.showEmployees();
+            System.out.println("Please enter the number of employee");
+            choice = scanner.nextInt();
+            while (choice>EmployeeHolder.getSize() || choice<0){
+                System.out.println("You have enter wrong number please try again:");
+                choice = scanner.nextInt();
+            }
+            addEmp(EmployeeHolder.getEmployee(choice));
+        }
+        else if (choice == 2){
+            showAssignedPeople();
+            int index = scanner.nextInt();
+            while (index>empList.size() || index<0){
+                System.out.println("You have enter wrong number please try again:");
+                index = scanner.nextInt();
+            }
+            empList.remove(index);
+        }
+
+    }
+
+    //This is a helper method. Just write for simplicity
+    private int getIndex(){
+        int choice = scanner.nextInt();
+        while (choice != 1 || choice != 2){
+            System.out.println("You have entered wrong number please try again");
+            choice = scanner.nextInt();
+
+            if (choice == 1 || choice == 2){
+                break;
+            }
+        }
+        return choice;
+    }
+
+
 }
 
 

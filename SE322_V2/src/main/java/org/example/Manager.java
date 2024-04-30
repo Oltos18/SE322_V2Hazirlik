@@ -8,7 +8,7 @@ import java.util.Scanner;
 class Manager extends Employee{    // DivideToSubtasks methodu yok
     HashMap<Worker,Task> WaitingForApprove = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
-    
+
     public Manager(String id, String name, String contactDetails, String jobRole){
         super(id, name, contactDetails, jobRole);
     }
@@ -24,7 +24,7 @@ class Manager extends Employee{    // DivideToSubtasks methodu yok
     }
 
     //just for the change the employee attributes
-    public void UpdateEmployee(Employee employee){
+    public void updateEmployee(Employee employee){
         int temp_input =0;
         System.out.println();
         System.out.println("To change employee ID press 1 \nTo change employee name press 2 \nTo change employee contact detail press 3 \nTo change employee job role press 4 \n");
@@ -88,59 +88,73 @@ class Manager extends Employee{    // DivideToSubtasks methodu yok
         employee.addTaskArray(task);
     }
 
-    public void updateTask(TaskHolder holder,EmployeeHolder employeeHolder){
+    public void updateTask(TaskHolder holder) {
         ArrayList<Task> tempList = holder.getAssignedList();
-        TaskHolder.showTasks(tempList);
 
-        System.out.println("Which Task Do You Want to Change? Give Number Please");
         int realChoice;
-        while (true){
-            int choice = scanner.nextInt();
-            if (choice> tempList.size()){
-                System.out.println("Your number is bigger than our list. Please try again");
-                continue;
-            } else if (choice<0) {
-                System.out.println("Your number is not a index number. Please give a bigger number than 0");
-                continue;
-            } else {
-                System.out.println("You enter "+ choice + "Is this what you want? \"Y\" or \"N\"");
-                String choice2 = scanner.nextLine();
-                choice2.toUpperCase();
-                if (choice2.equals("N")){
-                    System.out.println("Please enter new number:");
-                    continue;
-                }
-                else if(choice2.equals("Y")){
-                    realChoice = choice;
-                    System.out.println("What do you want to change? For Description enter \"D\". For Employee please \"E\"");
-                    choice2 = scanner.nextLine();
-                    if (choice2.toUpperCase().equals("D")){
-                        System.out.println("Enter New Description");
-                        choice2 = scanner.nextLine();
-                        tempList.get(choice).setDescription(choice2);
-                    } else if (choice2.toUpperCase().equals("E")) {
-                        tempList.get(choice).showAssignedPeople();
-                        System.out.println("What do you want yo do?\n1-Add\n2-Delete");
-                        int choice3 = scanner.nextInt();
-                        if (choice3 == 1){
-                            employeeHolder.showEmployees();
-                            System.out.println("Which employee do you want to choose give an index");
-                        }
-                        else if(choice3 == 2){
+        while (true) {
+            TaskHolder.showTasks(tempList);
+            System.out.println("Which Task Do You Want to Change? Give Number Please");
+            int choice = getIndex(tempList);
+            boolean isOk = isOk(choice);
+            while (!isOk){
+                choice = getIndex(tempList);
+                isOk = isOk(choice);
+            }
 
-                        }
-                        else {
-                            System.out.println("You can only enter \"1\" or \"2\". Please do not give another number.");
-                        }
-                    }else {
-                        System.out.println("You can only enter \"D\" or \"E\". Please do not give another answer.");
-                    }
-                }
-                else {
-                    System.out.println("You cannot enter \"Y\" or \"N\". Please give another number.");
-                }
+            boolean updateChoice = chooseUpdate();
+
+            if (updateChoice){
+                tempList.get(choice).setDescription();
+            }
+            else{
+                tempList.get(choice).UpdateWorker();
+            }
+        }
+    }//endFunction
+
+
+    public int getIndex(ArrayList<Task> tasks){
+        ArrayList<Task> tempList = tasks;
+        int choice = scanner.nextInt();
+        do {
+            System.out.println("Your number is invalid please try again");
+            choice = scanner.nextInt();
+        }
+        while (choice> tempList.size() || choice<0);
+        return choice;
+    }
+
+    public boolean isOk(int choice){
+        System.out.println("You enter "+ choice + "Is this what you want? \"Y\" or \"N\"");
+        String choice2 = scanner.nextLine();
+        choice2.toUpperCase();
+        while (!choice2.equals("N") || !choice2.equals("Y") ){
+            System.out.println("Your number is invalid please try again");
+            choice = scanner.nextInt();
+            if (choice2.equals("N")){
+                break;
+            }else if(choice2.equals("Y")){
+                break;
+            }
+        }
+        return choice2.equals("Y")? true : false;
+    }
+
+    public boolean chooseUpdate(){
+        System.out.println("What do you want to change? For Description enter \"D\". For Employee please \"E\"");
+        String choice2 = scanner.nextLine();
+
+        while (!choice2.equals("D") || !choice2.equals("E")){
+            System.out.println("You have entered invalid Input try again");
+            choice2 = scanner.nextLine();
+            if (choice2.equals("D")){
+                break;
+            }else if(choice2.equals("E")){
+                break;
             }
         }
 
+        return choice2.equals("D") ? true : false;
     }
 }
