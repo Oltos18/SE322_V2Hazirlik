@@ -3,7 +3,7 @@ package org.example;
 import java.util.*;
 
 
-public class Task {
+public class Task implements TaskComponent {
     private String taskId;
     private String description;
     private String workerComment;
@@ -15,6 +15,7 @@ public class Task {
     private int taskPoint;
     private ArrayList<Employee> empList;
     private Scanner scanner;
+    private boolean assigned = false;
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
@@ -43,12 +44,7 @@ public class Task {
         this.description = description;
     }
 
-<<<<<<< Updated upstream
     public List<TaskComponent> getSubTasks() {
-=======
-
-    public List<Task> getSubTasks() {
->>>>>>> Stashed changes
         return subTasks;
     }
     @Override
@@ -61,8 +57,7 @@ public class Task {
     }
     @Override
     public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
-        System.out.println("Task "+ taskId+"assigned to employee:\n"+employee.getName());
-
+        System.out.println("Task "+ taskId+" assigned to employee:\n"+employee.getName());
     }
 
 
