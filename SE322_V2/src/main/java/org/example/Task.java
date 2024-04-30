@@ -7,6 +7,7 @@ public class Task implements TaskComponent {
     private String taskId;
     private String description;
     private String workerComment;
+//    private String str;
     private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
     public enum TaskStatus{
         TODO,INPROGRESS,DONE
