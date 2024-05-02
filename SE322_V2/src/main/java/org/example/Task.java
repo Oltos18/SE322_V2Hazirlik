@@ -58,7 +58,10 @@ public class Task implements TaskComponent {
     }
     @Override
     public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
+        this.setAssigned(true);
+        employee.addTaskArray(this);
         System.out.println("Task "+ taskId+" assigned to employee:\n"+employee.getName());
+
     }
 
 
@@ -137,6 +140,7 @@ public class Task implements TaskComponent {
                 ", description='" + description + '\'' +
                 ", subTasks=" + subTasks +
                 ", assigned=" + assigned +
+                ", comment= " + getWorkerComment() +
                 '}';
     }
 
@@ -190,8 +194,6 @@ public class Task implements TaskComponent {
         }
         return choice;
     }
-
-
 }
 
 
