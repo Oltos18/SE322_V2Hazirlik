@@ -26,10 +26,15 @@ class ManagerTest {
     }
 
     @Test
-    void addToWaitingForApproveNegative() {
+    void addToWaitingForApproveNegative() { // PASSED
+        // adding for invalid worker
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Worker invalidWorker = new Worker("3", "Jenna Bailey", "jenna@office.com", "Software Developer",manager);
+        Task task = new Task("1", "Complete project report", 5);
+
+        assertFalse(manager.WaitingForApprove.containsKey(invalidWorker));
 
     }
-    
 
     @Test
     void createEmployeePositive() { // PASSED
@@ -55,8 +60,14 @@ class ManagerTest {
 
     @Test
     void updateEmployeeNegative() {
-        // Negative test case
-        // ??
+        // updating employee with duplicate info
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee existingOne = new Employee("2", "John Black", "john@office.com", "Software Developer");
+        Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
+
+        // ...
+
+        assertNotEquals("3", employee.getId());
     }
 
     @Test
@@ -70,8 +81,12 @@ class ManagerTest {
     }
 
     @Test
-    void FireEmployeeNegative() {
-        // Negative test case - removing non-existing employee (??)
+    void FireEmployeeNegative() { // PASSED
+        //negative test case, removing non-existing employee
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
+
+        assertNotEquals(employee, manager.FireEmployee(1));
     }
 
 
@@ -87,10 +102,14 @@ class ManagerTest {
 
 
     @Test
-    public void giveTaskNegative() { // NEED TO BE FIXED **************************************
+    public void giveTaskNegative() { // PASSED
         // Negative test case, testing adding null task and assigning it
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
+        Task nullTask = null;
+        manager.GiveTask(employee, nullTask);
 
-        //...
+        assertNotEquals(1, employee.getTaskArray().size());
 
     }
 

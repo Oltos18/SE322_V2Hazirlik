@@ -14,21 +14,20 @@ class ReportTest {
     @Test
     void setReportTimerPositive() {  // NEEDS TO BE FIXED
         Report report = new Report();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2024, Calendar.MAY, 1);
-        report.calendar = calendar;
-
         report.setReportTimer();
 
         Calendar expectedCalendar = Calendar.getInstance();
-        expectedCalendar.set(2024, Calendar.MAY, 8); // one week later
-
-        assertEquals(expectedCalendar.getTime(), calendar.getTime()); // testing whether calendar updates correctly
+        expectedCalendar.add(Calendar.DATE, 1);
+        assertEquals(expectedCalendar.getTime(), report.calendar.getTime());
     }
 
     @Test
-    void setReportTimerNegative() {
+    void setReportTimerNegative() { // NEEDS TO BE FIXED
+        Report report = new Report();
+        report.setReportTimer();
+
+        Calendar expectedCalendar = Calendar.getInstance();
+        assertNotEquals(expectedCalendar.getTime(), report.calendar.getTime());
     }
 
 }

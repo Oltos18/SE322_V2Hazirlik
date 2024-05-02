@@ -20,14 +20,13 @@ class EmployeeTest {
     }
 
     @Test
-    void addCompletedTasksNegative() {  // NEED TO BE FIXED ********************************
+    void addCompletedTasksNegative() {  // PASSED
         // Negative test case, adding a null task is tested
         Employee employee = new Employee("1", "John Black", "john@office.com", "Software Developer");
-
-        Task nullTask = new Task(null, null, 0);
+        Task nullTask = null;
         employee.addCompletedTasks(nullTask);
-
-        assertNotEquals(nullTask, employee.getCompletedTasks().get(0));
+        List<Task> completedTasks = employee.getCompletedTasks();
+        assertFalse(completedTasks.contains(nullTask), "Null task should not be added to the completed tasks list.");
     }
 
     @Test
@@ -95,26 +94,27 @@ class EmployeeTest {
     }
 
     @Test
-    void completeTaskNegative() { // NEED TO BE FIXED **************************************
+    void completeTaskNegative() {  // NEED TO BE FIXED
         // Negative test case, testing the case that employee tries to complete a task that the he/she doesn't have any
         Employee employee = new Employee("1", "John Black", "john@office.com", "Software Developer");
-        Task unassignedTask = new Task("2", "Prepare presentation slides", 10);
-        //assertThrows(IllegalArgumentException.class, () -> employee.CompleteTask(unassignedTask));
+        Task task = new Task("1", "Complete project report", 5);
+        employee.CompleteTask(task);
 
-        // ...
+        assertFalse(employee.getCompletedTasks().contains(task), "Non-existing task should not be completed.");
+
     }
 
     @Test
     void separateTaskPositive() { // PASSED
         // Positive test case, seperating tasks into subtasks are tested
-        Employee employee = new Employee("1", "John Black", "john@office.com", "Software Developer");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
         Task task = new Task("1", "Complete project report", 5);
         Task subtask1 = new Task("1.1", "Gather project data", 2);
         Task subtask2 = new Task("1.2", "Analyze project requirements", 3);
         List<Task> subtasks = new ArrayList<>();
         subtasks.add(subtask1);
         subtasks.add(subtask2);
-        employee.separateTask(task, (ArrayList<Task>) subtasks);
+        manager.separateTaskToSubtasks(task, (ArrayList<Task>) subtasks);
         assertEquals(2, task.getSubTasks().size(), "Task should have 2 subtasks after separation.");
 
     }
@@ -122,9 +122,9 @@ class EmployeeTest {
     @Test
     void separateTaskNegative() { // PASSED
         // Negative test case, trying to separate tasks when subtasks list is null is tested
-        Employee employee = new Employee("1", "John Black", "john@office.com", "Software Developer");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
         Task task = new Task("1", "Complete project report", 5);
         List<Task> nullSubtasks = null;
-        assertThrows(NullPointerException.class, () -> employee.separateTask(task, (ArrayList<Task>) nullSubtasks));
+        assertThrows(NullPointerException.class, () -> manager.separateTaskToSubtasks(task, (ArrayList<Task>) nullSubtasks));
     }
 }

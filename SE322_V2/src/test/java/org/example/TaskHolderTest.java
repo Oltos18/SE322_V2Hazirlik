@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskHolderTest {
 
     @Test
-    void showUnAssignedPositive() {  // PASSED BUT SHOULD BE CHECKED LATER
+    void showUnAssignedPositive() {  // PASSED
         //Positive test case, viewing existing unassigned tasks are tested
         TaskHolder taskHolder = new TaskHolder();
         Task unassignedTask = new Task("1", "Complete project report", 5);
@@ -51,6 +51,11 @@ class TaskHolderTest {
     }
 
     @Test
-    void addToArraylistNegative() {  // ??
+    void addToArraylistNegative() {
+        // Negative test case, adding null task to the list
+        TaskHolder taskHolder = new TaskHolder();
+        Task task = null;
+        taskHolder.AddToArraylist(task);
+        assertNotEquals(1, taskHolder.arrayList.size());
     }
 }
