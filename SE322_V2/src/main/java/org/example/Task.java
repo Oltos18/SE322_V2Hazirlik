@@ -21,7 +21,7 @@ public class Task implements TaskComponent {
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
         this.description = description;
-        this.subTasks = new ArrayList<>();
+        this.subTasks = new ArrayList<TaskComponent>();
         this.assigned = false;
         this.empList = new ArrayList<>();
         status = TaskStatus.TODO;
