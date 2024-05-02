@@ -6,9 +6,20 @@ class TaskHolder{
     ArrayList<Task> arrayList = new ArrayList<>();
 
     public void showUnAssigned(){ //prints all unassigned task in the main tasklist
-        for (Task task : arrayList) {
-            if (!task.isAssigned()){
-                System.out.println(task.toString());
+        int index = 0;
+        for (int i = 0; i<arrayList.size(); i++) {
+            if (!(arrayList.get(i).isAssigned())){
+                System.out.println( index +": "+ arrayList.get(i).toString());
+                index++;
+            }
+        }
+    }
+    public void showAssigned(){ //prints all unassigned task in the main tasklist
+        int index = 0;
+        for (int i = 0; i<arrayList.size(); i++) {
+            if (arrayList.get(i).isAssigned()){
+                System.out.println(index +": "+ arrayList.get(i).toString());
+                index++;
             }
         }
     }
@@ -17,6 +28,15 @@ class TaskHolder{
         ArrayList<Task> temp = new ArrayList<>();
         for (Task task : arrayList) {
             if (task.isAssigned()){
+                temp.add(task);
+            }
+        }
+        return temp;
+    }
+    public ArrayList<Task> getUnAssignedList(){ //returns all assigned tasks in the task list. Returns an arraylist format
+        ArrayList<Task> temp = new ArrayList<>();
+        for (Task task : arrayList) {
+            if (!(task.isAssigned())){
                 temp.add(task);
             }
         }
@@ -34,5 +54,9 @@ class TaskHolder{
                     "  " + task.getDescription()+ "\n" +
                     "  " + task.getEmpList() );
         }
+    }
+
+    public Task getTask(int index) {
+        return arrayList.get(index);
     }
 }
