@@ -90,7 +90,11 @@ class Manager extends Employee{
     }
 
     public void GiveTask(Employee employee, Task task){
-        employee.addTaskArray(task);
+        if (task != null) {
+            this.addTaskArray(task);
+        } else {
+            System.out.println("Cannot add a null task to completed tasks.");
+        }
     }
 
     public void updateTask(TaskHolder holder) {

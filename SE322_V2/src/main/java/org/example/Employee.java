@@ -72,7 +72,11 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
     }
 
     public void addCompletedTasks(Task task) {
-        this.completedTask.add(task);
+        if (task != null) {
+            this.completedTask.add(task);
+        } else {
+            System.out.println("Cannot add a null task to completed tasks.");
+        }
     }
 
     // Method to assign a task to this employee
