@@ -1,6 +1,7 @@
 package org.example;
 import javax.xml.transform.Source;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmployeeTaskManagementSystem {
@@ -25,6 +26,7 @@ public class EmployeeTaskManagementSystem {
         holder.AddToArraylist(task3);
         holder.AddToArraylist(task4);
         holder.AddToArraylist(task5);
+
         EmployeeHolder.AddToArraylist(manager);
         EmployeeHolder.AddToArraylist(employee1);
         EmployeeHolder.AddToArraylist(employee2);
@@ -32,6 +34,7 @@ public class EmployeeTaskManagementSystem {
 
 
         Command newAssign = new AssignTaskCommand();
+
         task1.assignTask(employee1);
         task2.assignTask(employee2);
         System.out.println(task1.isAssigned());
@@ -142,11 +145,30 @@ public class EmployeeTaskManagementSystem {
                             break;
                         case 9:
                             //Separate Task to Subtasks
+                            boolean flag = true;
                             holder.showUnAssigned();
                             System.out.println("Please select which task do you want to separate.(Please enter task index)");
                             index = scanner.nextInt();
                             scanner.nextLine();
-//                            ((Manager) manager).separateTaskToSubtasks(holder.getTask(index), );
+                            while(flag){
+                                System.out.println("Please enter new Task ID:");
+                                id = scanner.nextLine();
+                                System.out.println("Please enter a description for new Task:");
+                                description = scanner.nextLine();
+                                System.out.println("Please enter a point for new Task:");
+                                point = scanner.nextInt();
+                                scanner.nextLine();
+                                Task newSubTask = ((Manager) manager).CreateTask(id, description, point);
+                                holder.getUnAssignedList().get(index).addSubTask(newSubTask);
+
+                                System.out.println("Want to create another subtask? Press 0 to stop creating subtasks!");
+                                int subTaskContinue = scanner.nextInt();
+                                scanner.nextLine();
+                                if(subTaskContinue == 0){
+                                    flag = false;
+                                }
+                            }
+
                             break;
                         case 10:
                             //Complete Task
