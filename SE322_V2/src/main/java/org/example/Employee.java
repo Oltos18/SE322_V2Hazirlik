@@ -81,8 +81,8 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
     }
 
     public void ViewAssignedTasks(){
-        for(Task task:taskArray){
-            System.out.println("Task ID is " + task.getTaskId()+ " Task Description is " + task.getDescription());
+        for(int i=0;i < taskArray.size();i++){
+            System.out.println(i + "-Task ID is " + getTaskArray().get(i).getTaskId()+ " Task Description is " + getTaskArray().get(i).getDescription());
         }
     }
 
@@ -98,11 +98,8 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         taskArray.remove(task);
     }
 
-    // bu method Sinem'in attığı java dosyası ile gelmişti ondan silmedim. Sizle konuşup silmek istedim
-    // Method to separate a task to subtasks
-    public void separateTask(Task task, ArrayList<Task> subTasks) {
-        task.getSubTasks().addAll(subTasks);
-    }
+
+
 
     // toString method to represent employee information as a string
     @Override
