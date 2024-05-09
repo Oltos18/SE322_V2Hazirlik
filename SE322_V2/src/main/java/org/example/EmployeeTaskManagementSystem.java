@@ -2,6 +2,7 @@ package org.example;
 import javax.xml.transform.Source;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class EmployeeTaskManagementSystem {
@@ -246,4 +247,34 @@ public class EmployeeTaskManagementSystem {
 
         scanner.close();
     }
+
+    public boolean isPasswordValid(String password) {
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
+        boolean hasDigit = false;
+        boolean hasSpecialCharacter = false;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                hasUppercase = true;
+            }
+            else if (Character.isLowerCase(c)) {
+                hasLowercase = true;
+            }
+            else if (Character.isDigit(c)) {
+                hasDigit = true;
+            }
+            else {
+                // Check for special characters using ASCII values
+                if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 96) || (c >= 123 && c <= 126)) {
+                    hasSpecialCharacter = true;
+                }
+            }
+        }
+
+        // hepsi okeyse true doner
+        return hasUppercase && hasLowercase && hasDigit && hasSpecialCharacter;
+    }
 }
+
+
