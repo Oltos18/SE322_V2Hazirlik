@@ -1,7 +1,7 @@
 package org.example;
 
 import java.util.*;
-
+// Log u oluşturdum ama her action için yapacağı için ona nasıl devam edeceğimi bilemedim (sinem)
 
 public class Task implements TaskComponent {
     private String taskId;
@@ -18,6 +18,9 @@ public class Task implements TaskComponent {
     private Scanner scanner;
     private boolean assigned = false;
     private Employee assignedTo;
+    private List<Log> logHistory; // yapılanları kaydetmek için Lazım(sinem)
+
+
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
@@ -28,6 +31,7 @@ public class Task implements TaskComponent {
         status = TaskStatus.TODO;
         taskPoint = point;
         scanner = new Scanner(System.in);
+        this.logHistory=new ArrayList<>();
     }
 
 
