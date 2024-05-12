@@ -10,7 +10,7 @@ public class EmployeeTaskManagementSystem {
         Scanner scanner = new Scanner(System.in);
         TaskHolder holder = new TaskHolder();
         EmployeeHolder employeeHolder = new EmployeeHolder();
-        Employee manager = new Manager("1", "Manager", "manager@example.com", "Manager");
+        Employee manager = new Manager("1", "Manager", "manager@example.com", "Manager",8,17);
         Employee employee1 = new Worker ("2", "John Doe", "john@example.com", "Software Developer", (Manager) manager);
         Employee employee2 = new Employee("3", "Jane Smith", "jane@example.com", "Software Developer");
 
