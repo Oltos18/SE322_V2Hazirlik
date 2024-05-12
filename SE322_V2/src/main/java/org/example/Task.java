@@ -7,8 +7,8 @@ public class Task implements TaskComponent {
     private String taskId;
     private String description;
     private String workerComment;
-
     private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
+
     public enum TaskStatus{
         TODO,INPROGRESS,DONE
     }
@@ -17,6 +17,7 @@ public class Task implements TaskComponent {
     private ArrayList<Employee> empList;
     private Scanner scanner;
     private boolean assigned = false;
+    private Employee assignedTo;
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
@@ -58,10 +59,13 @@ public class Task implements TaskComponent {
     }
     @Override
     public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
-        this.setAssigned(true);
-        employee.addTaskArray(this);
-        System.out.println("Task "+ taskId+" assigned to employee:\n"+employee.getName());
-
+      if (employee instanceof Manager && ((Manager)employee).isWorkingHours()) {
+          this.assignedTo = employee;
+          this.assigned = true;
+          System.out.println("Task" + taskId + "assigned to employee:" + employee.getName());
+      }else{
+          System.out.println("Task assignment failed. Manager isbot available during working hours. ");
+      }
     }
 
 
