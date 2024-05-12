@@ -7,10 +7,22 @@ import java.util.Scanner;
 
 class Manager extends Employee{
     HashMap<Worker,Task> WaitingForApprove = new HashMap<>();
+    private  int startHour;// başlama(sinem)
+    private int endHour;//bitme(sinem)
     Scanner scanner = new Scanner(System.in);
 
-    public Manager(String id, String name, String contactDetails, String jobRole){
+
+    public Manager(String id, String name, String contactDetails, String jobRole, int startHour,int endHour){
         super(id, name, contactDetails, jobRole);
+        this.startHour=startHour;
+        this.endHour=endHour;
+
+    }
+    public boolean isWorkingHours(){// geçerli saati kodda belirledim(sinem)
+        int currentHour=8;
+        return currentHour>= startHour && currentHour<= endHour;
+
+
     }
 
     // bunun çalışması için bizim employeeleri tuttuğumuz bir genel arrayden, input olarak verilen employee objesini silmemiz lazım
