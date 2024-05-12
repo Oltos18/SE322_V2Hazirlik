@@ -15,7 +15,7 @@ public class Log {// Log kayıtları için sınıf olmalı bu sınıf action, ki
 
     }
 
-    public String toString(){
-        return "{"+timestamp+"}" +action+"performed by "+ performedBy;
-    }
+   // public String toString(){
+     //   return "{"+timestamp+"}" +action+"performed by "+ performedBy;
+    //}
 }
