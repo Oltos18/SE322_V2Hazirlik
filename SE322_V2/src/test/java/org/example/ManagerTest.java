@@ -16,7 +16,7 @@ class ManagerTest {
     @Test
     void addToWaitingForApprovePositive() { // PASSED
         // Positive test case, waiting for approval of matching tasks and workers is tested
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Worker worker = new Worker("2", "John Black", "john@office.com", "Software Developer", manager);
         Task task = new Task("1", "Complete project report", 5);
         manager.AddToWaitingForApprove(worker, task);
@@ -28,7 +28,7 @@ class ManagerTest {
     @Test
     void addToWaitingForApproveNegative() { // PASSED
         // adding for invalid worker
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Worker invalidWorker = new Worker("3", "Jenna Bailey", "jenna@office.com", "Software Developer",manager);
         Task task = new Task("1", "Complete project report", 5);
 
@@ -39,7 +39,7 @@ class ManagerTest {
     @Test
     void createEmployeePositive() { // PASSED
         //Positive test case, creating employee with valid data is tested
-        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         assertEquals("Manager", manager.getJobRole());
     }
 
@@ -53,7 +53,7 @@ class ManagerTest {
     @Test
     void updateEmployeePositive() { // PASSED
         // Positive test case, updating existing employee is tested
-        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         manager.setName("Updated Manager");
         assertEquals("Updated Manager", manager.getName());
     }
@@ -61,7 +61,7 @@ class ManagerTest {
     @Test
     void updateEmployeeNegative() {
         // updating employee with duplicate info
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Employee existingOne = new Employee("2", "John Black", "john@office.com", "Software Developer");
         Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
 
@@ -73,7 +73,7 @@ class ManagerTest {
     @Test
     void FireEmployeePositive() { // PASSED
         // Positive test case, removing existing employee is tested
-        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Employee manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Manager managerToDelete = (Manager) manager;
         assertNotNull(managerToDelete);
         managerToDelete = null;
@@ -83,7 +83,7 @@ class ManagerTest {
     @Test
     void FireEmployeeNegative() { // PASSED
         //negative test case, removing non-existing employee
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
 
         assertNotEquals(employee, manager.FireEmployee(1));
@@ -104,7 +104,7 @@ class ManagerTest {
     @Test
     public void giveTaskNegative() { // PASSED
         // Negative test case, testing adding null task and assigning it
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         Employee employee = new Employee("2", "John Black", "john@office.com", "Software Developer");
         Task nullTask = null;
         manager.GiveTask(employee, nullTask);
@@ -115,7 +115,7 @@ class ManagerTest {
 
     @Test
     public void isOKPositive() { // this takes too long - SHOULD BE FIXED
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         boolean result = manager.isOk(1);
 
         assertEquals(true, result);
@@ -124,7 +124,7 @@ class ManagerTest {
 
     @Test
     public void isOKNegative() { // this takes too long - SHOULD BE FIXED
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         boolean result = manager.isOk(2);
 
         assertNotEquals(false, result);
@@ -139,7 +139,7 @@ class ManagerTest {
         tasks.add(new Task("1", "Complete project report", 5));
         tasks.add(new Task("2", "Prepare presentation", 2));
 
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         int choice = 1;
 
         boolean isOk = true;
@@ -158,7 +158,7 @@ class ManagerTest {
         tasks.add(new Task("1", "Complete project report", 5));
         tasks.add(new Task("2", "Prepare presentation", 2));
 
-        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager");
+        Manager manager = new Manager("1", "Manager", "manager@office.com", "Manager",8,17);
         int choice = 1;
         boolean isOk = true;
         boolean updateChoice = false;
