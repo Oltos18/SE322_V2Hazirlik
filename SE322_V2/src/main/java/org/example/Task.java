@@ -1,5 +1,7 @@
 package org.example;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 // Log u oluşturdum ama her action için yapacağı için ona nasıl devam edeceğimi bilemedim (sinem)
 
@@ -20,7 +22,9 @@ public class Task implements TaskComponent {
     private Employee assignedTo;
     private List<Log> logHistory; // yapılanları kaydetmek için Lazım(sinem)
 
-
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    LocalTime startTime = LocalTime.parse("08:00", formatter);
+    LocalTime endTime = LocalTime.parse("17:00", formatter);
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
