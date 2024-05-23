@@ -61,15 +61,24 @@ public class Task implements TaskComponent {
     public void removeSubTask(TaskComponent task) {
         subTasks.remove(task);
     }
+    public boolean isCurrentTimeValid(){
+        LocalTime currentTime = LocalTime.now();
+
+        if (startTime.isBefore(endTime)) {
+            return !currentTime.isBefore(startTime) && !currentTime.isAfter(endTime);
+        } else { // Handles the case where the time range crosses midnight
+            return !currentTime.isBefore(startTime) || !currentTime.isAfter(endTime);
+        }
+    }
     @Override
     public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
-      if (employee instanceof Manager && ((Manager)employee).isWorkingHours()) {
-          this.assignedTo = employee;
-          this.assigned = true;
-          System.out.println("Task" + taskId + "assigned to employee:" + employee.getName());
-      }else{
-          System.out.println("Task assignment failed. Manager isbot available during working hours. ");
-      }
+        if(isCurrentTimeValid()){
+            this.setAssigned(true);
+            employee.addTaskArray(this);
+            System.out.println("Task "+ taskId+" assigned to employee:\n"+employee.getName());
+        } else {
+            System.out.println("Current time is not in work hours! (08:00-17:00)");
+        }
     }
 
 
