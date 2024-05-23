@@ -3,14 +3,14 @@ package org.example;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-// Log u oluşturdum ama her action için yapacağı için ona nasıl devam edeceğimi bilemedim (sinem)
+
 
 public class Task implements TaskComponent {
     private String taskId;
     private String description;
     private String workerComment;
-    private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
 
+    private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
     public enum TaskStatus{
         TODO,INPROGRESS,DONE
     }
@@ -19,9 +19,6 @@ public class Task implements TaskComponent {
     private ArrayList<Employee> empList;
     private Scanner scanner;
     private boolean assigned = false;
-    private Employee assignedTo;
-    private List<Log> logHistory; // yapılanları kaydetmek için Lazım(sinem)
-
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     LocalTime startTime = LocalTime.parse("08:00", formatter);
     LocalTime endTime = LocalTime.parse("17:00", formatter);
@@ -35,7 +32,6 @@ public class Task implements TaskComponent {
         status = TaskStatus.TODO;
         taskPoint = point;
         scanner = new Scanner(System.in);
-        this.logHistory=new ArrayList<>();
     }
 
 
@@ -84,8 +80,6 @@ public class Task implements TaskComponent {
             System.out.println("Current time is not in work hours! (08:00-17:00)");
         }
     }
-
-
     public boolean isAssigned() {
         return assigned;
     }

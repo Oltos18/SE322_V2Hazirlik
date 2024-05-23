@@ -3,8 +3,8 @@ package org.example;
 class Worker extends Employee{
     Manager manager;
 
-    public Worker(String id, String name, String contactDetails, String jobRole,Manager manager_1){
-        super(id, name, contactDetails, jobRole);
+    public Worker(String id, String name, String contactDetails, String password, String jobRole,Manager manager_1){
+        super(id, name, contactDetails, password, jobRole);
         manager=manager_1;
     }
 

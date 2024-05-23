@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,22 +8,10 @@ import java.util.Scanner;
 
 class Manager extends Employee{
     HashMap<Worker,Task> WaitingForApprove = new HashMap<>();
-    private  int startHour;// başlama(sinem)
-    private int endHour;//bitme(sinem)
     Scanner scanner = new Scanner(System.in);
 
-
-    public Manager(String id, String name, String contactDetails, String jobRole, int startHour,int endHour){
-        super(id, name, contactDetails, jobRole);
-        this.startHour=startHour;
-        this.endHour=endHour;
-
-    }
-    public boolean isWorkingHours(){// geçerli saati kodda belirledim(sinem)
-        int currentHour=8;
-        return currentHour>= startHour && currentHour<= endHour;
-
-
+    public Manager(String id, String name, String contactDetails, String password, String jobRole){
+        super(id, name, contactDetails, password, jobRole);
     }
 
     // bunun çalışması için bizim employeeleri tuttuğumuz bir genel arrayden, input olarak verilen employee objesini silmemiz lazım
@@ -33,8 +22,8 @@ class Manager extends Employee{
     }
 
     //bunun icinde yaratınca genel bir employee arrayi varsa içine atabilir ya da return ettigi yerde eklenebilir
-    public Employee CreateEmployee(String EmployeeID, String name, String ContactDetail, String jobRole){
-        return new Employee(EmployeeID, name, ContactDetail, jobRole);
+    public Employee CreateEmployee(String EmployeeID, String name,String password ,String ContactDetail, String jobRole){
+        return new Employee(EmployeeID, name, password,ContactDetail, jobRole);
     }
     public Task CreateTask(String ID, String desc, int point){
         return new Task(ID, desc, point);

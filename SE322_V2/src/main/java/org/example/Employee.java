@@ -10,14 +10,32 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
     private String jobRole;
     private ArrayList<Task> taskArray;
     private ArrayList<Task> completedTask;
+    private String password;
 
-    public Employee(String id, String name, String contactDetails, String jobRole) {
+    public Employee(String id, String name, String contactDetails, String password, String jobRole) {
         this.id = id;
         this.name = name;
         this.contactDetails = contactDetails;
+        this.password= password;
         this.jobRole = jobRole;
-        this.taskArray = new ArrayList<>();
         this.completedTask = new ArrayList<>();
+        this.taskArray = new ArrayList<>();
+    }
+
+    public ArrayList<Task> getCompletedTask() {
+        return completedTask;
+    }
+
+    public void setCompletedTask(ArrayList<Task> completedTask) {
+        this.completedTask = completedTask;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     // Getters and setters for employee attributes
