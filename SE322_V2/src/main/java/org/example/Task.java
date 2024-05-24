@@ -24,7 +24,7 @@ public class Task implements TaskComponent {
     LocalTime startTime = LocalTime.parse("08:00", formatter);
     LocalTime endTime = LocalTime.parse("19:00", formatter);
     //
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     LocalDateTime endDate;
 
     public Task(String taskId, String description,int point) {

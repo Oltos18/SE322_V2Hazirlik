@@ -12,6 +12,7 @@ class Worker extends Employee{
     public void CompleteTask(Task task) {  //directly related with manager, it is like a broadcast in the end
         super.CompleteTask(task);
         manager.AddToWaitingForApprove(this,task);
+
     }
 
     public String toString() {

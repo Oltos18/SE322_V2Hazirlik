@@ -1,22 +1,36 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Report {
     Scanner reportScanner = new Scanner(System.in);
-    Employee selectedEmployee;
+    ArrayList<Employee> employees;
     Calendar calendar = Calendar.getInstance();
+    LocalDateTime localDateTime;
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
         @Override
         public void run() {
-
+            employees = EmployeeHolder.getEmployeesArraylist();
+            localDateTime = LocalDateTime.now();
+            LocalDateTime past = localDateTime.minus(7, ChronoUnit.DAYS);
+            for(Employee e: employees){
+                int point=0;
+                for(Task task :e.getCompletedTasks()){
+                    if(task.getEndDate().isAfter(past) && task.endDate.isBefore(localDateTime)){
+                        point+= task.getTaskPoint();
+                    }
+                }
+                System.out.println("Employee " + e.getName() + " get " + point + " points");
+            }
         }
     };
 
     public Report(){
-        selectedEmployee = selectEmployee();
         setReportTimer();
         addToCalender();
     }
@@ -43,13 +57,5 @@ public class Report {
 
     public void addToCalender(){
         timer.schedule(task,calendar.getTime());
-    }
-
-    public Employee selectEmployee(){
-        EmployeeHolder.showEmployees();
-        System.out.println("Enter the index of the employee");
-        int tempInt = reportScanner.nextInt();
-        selectedEmployee=EmployeeHolder.getEmployee(tempInt);
-        return selectedEmployee;
     }
 }

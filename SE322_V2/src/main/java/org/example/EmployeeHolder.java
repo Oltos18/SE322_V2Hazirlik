@@ -28,6 +28,10 @@ public class EmployeeHolder {
         }
     }
 
+    public static ArrayList<Employee> getEmployeesArraylist(){
+        return arrayList;
+    }
+
     public static int getSize(){
         return arrayList.size();
     }
