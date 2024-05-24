@@ -1,6 +1,5 @@
 package org.example;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,33 +30,33 @@ class Manager extends Employee{
 
     //just for the change the employee attributes
     public  void updateEmployee(Employee employee){
-        int temp_input =0;
+        int temp_input;
         System.out.println();
         System.out.println("To change employee ID press 1 \nTo change employee name press 2 \nTo change employee contact detail press 3 \nTo change employee job role press 4 \n");
         temp_input = scanner.nextInt();
         if (temp_input==1){
-            int temp_input_2=0;
+            int temp_input_2;
             System.out.println("Enter new ID");
             temp_input_2=scanner.nextInt();
             employee.setId(Integer.toString(temp_input_2));
         }
         else if(temp_input==2){
-            String temp_input_string_2="";
+            String temp_input_string_2;
             System.out.println("Enter new name");
             temp_input_string_2= scanner.nextLine();
             employee.setName(temp_input_string_2);
         }
         else if(temp_input==3){
-            String temp_input_string_3="";
+            String temp_input_string_3;
             System.out.println("Enter new contact detail");
             temp_input_string_3= scanner.nextLine();
             employee.setContactDetails(temp_input_string_3);
         }
         else if(temp_input==4){
-            String temp_input_string_3="";
+            String temp_input_string_4;
             System.out.println("Enter new job role");
-            temp_input_string_3= scanner.nextLine();
-            employee.setJobRole(temp_input_string_3);
+            temp_input_string_4= scanner.nextLine();
+            employee.setJobRole(temp_input_string_4);
         }
     }
 
@@ -91,17 +90,16 @@ class Manager extends Employee{
     }
 
     public void GiveTask(Employee employee, Task task){
-        if (task != null) {
-            this.addTaskArray(task);
+        if (task != null && employee!= null) {
+            employee.addTaskArray(task);
         } else {
-            System.out.println("Cannot add a null task to completed tasks.");
+            System.out.println("Either employee or task is null");
         }
     }
 
     public void updateTask(TaskHolder holder) {
         ArrayList<Task> tempList = holder.getAssignedList();
 
-        int realChoice;
         while (true) {
             TaskHolder.showTasks(tempList);
             System.out.println("Which Task Do You Want to Change? Give Number Please");
@@ -127,11 +125,10 @@ class Manager extends Employee{
     public int getIndex(ArrayList<Task> tasks){
         ArrayList<Task> tempList = tasks;
         int choice = scanner.nextInt();
-        do {
+        while (choice> tempList.size() || choice<0){
             System.out.println("Your number is invalid please try again");
             choice = scanner.nextInt();
         }
-        while (choice> tempList.size() || choice<0);
         return choice;
     }
 

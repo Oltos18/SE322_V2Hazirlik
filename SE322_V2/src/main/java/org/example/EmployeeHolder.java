@@ -13,8 +13,6 @@ public class EmployeeHolder {
         arrayList.remove(emp);
     }
 
-
-
     public static void showEmployees(){
         for (int i = 0; i< arrayList.size();i++){
             Employee tempEmp = arrayList.get(i);

@@ -20,6 +20,7 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         this.jobRole = jobRole;
         this.completedTask = new ArrayList<>();
         this.taskArray = new ArrayList<>();
+
     }
 
     public ArrayList<Task> getCompletedTask() {
@@ -82,7 +83,8 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
     public void addTaskArray(Task goal) { //also calls assignTask script
         this.taskArray.add(goal);
         goal.setStatus(Task.TaskStatus.INPROGRESS);
-        goal.AddToEmpList(this);
+        goal.addToEmpList(this);
+        goal.setAssigned(true);
     }
 
     public List<Task> getCompletedTasks() {
@@ -97,20 +99,10 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         }
     }
 
-    // Method to assign a task to this employee
-    private void assignTask(Task task) {
-        task.setAssigned(true);
-    }
-
     public void ViewAssignedTasks(){
         for(int i=0;i < taskArray.size();i++){
             System.out.println(i + "-Task ID is " + getTaskArray().get(i).getTaskId()+ " Task Description is " + getTaskArray().get(i).getDescription());
         }
-    }
-
-    //bu method şuan boş. Genel task arrayinden assigned olmayanlar check edilip burada yazdırılabilir
-    public void ViewUnAssignedTasks(){
-
     }
 
     //Bu methodu Workera mı yoksa Managera mı koyacağımıza karar verememiştik ben Employee koydum direkt yeri değişebilir ileride
@@ -119,9 +111,6 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         completedTask.add(task);
         taskArray.remove(task);
     }
-
-
-
 
     // toString method to represent employee information as a string
     @Override

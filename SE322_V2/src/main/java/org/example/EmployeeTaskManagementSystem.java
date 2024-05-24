@@ -141,7 +141,8 @@ public class EmployeeTaskManagementSystem {
                                 index = scanner.nextInt();
                                 scanner.nextLine();
                                 Task selectedTask = holder.getUnAssignedList().get(index);
-                                newAssign.execute(selectedEmployee, selectedTask);
+                                //newAssign.execute(selectedEmployee, selectedTask);
+                                ((Manager) manager).GiveTask(selectedEmployee,selectedTask);
 
                                 break;
                             case 8:

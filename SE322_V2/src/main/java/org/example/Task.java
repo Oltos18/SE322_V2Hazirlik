@@ -61,6 +61,7 @@ public class Task implements TaskComponent {
     public void removeSubTask(TaskComponent task) {
         subTasks.remove(task);
     }
+
     public boolean isCurrentTimeValid(){
         LocalTime currentTime = LocalTime.now();
 
@@ -75,7 +76,7 @@ public class Task implements TaskComponent {
         if(isCurrentTimeValid()){
             this.setAssigned(true);
             employee.addTaskArray(this);
-            System.out.println("Task "+ taskId+" assigned to employee:\n"+employee.getName());
+            System.out.println("Task "+ taskId +" assigned to employee:\n"+employee.getName());
         } else {
             System.out.println("Current time is not in work hours! (08:00-17:00)");
         }
@@ -115,7 +116,7 @@ public class Task implements TaskComponent {
         }
     }
 
-    public void AddToEmpList(Employee employee){
+    public void addToEmpList(Employee employee){
         empList.add(employee);
 
         if (this.empList.size()>0){
@@ -159,10 +160,6 @@ public class Task implements TaskComponent {
                 '}';
     }
 
-    public void addEmp(Employee emp){
-        empList.add(emp);
-    }
-
     //When manager want to update description it should use this
     public void setDescription(){
         System.out.println("Please enter new description");
@@ -182,7 +179,7 @@ public class Task implements TaskComponent {
                 System.out.println("You have enter wrong number please try again:");
                 choice = scanner.nextInt();
             }
-            addEmp(EmployeeHolder.getEmployee(choice));
+            addToEmpList(EmployeeHolder.getEmployee(choice));
         }
         else if (choice == 2){
             showAssignedPeople();

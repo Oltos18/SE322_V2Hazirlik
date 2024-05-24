@@ -14,6 +14,7 @@ class TaskHolder{
             }
         }
     }
+
     public void showAssigned(){ //prints all unassigned task in the main tasklist
         int index = 0;
         for (int i = 0; i<arrayList.size(); i++) {
@@ -33,6 +34,7 @@ class TaskHolder{
         }
         return temp;
     }
+
     public ArrayList<Task> getUnAssignedList(){ //returns all assigned tasks in the task list. Returns an arraylist format
         ArrayList<Task> temp = new ArrayList<>();
         for (Task task : arrayList) {
