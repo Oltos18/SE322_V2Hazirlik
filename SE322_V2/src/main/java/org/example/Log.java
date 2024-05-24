@@ -33,7 +33,7 @@ public class Log {// Log kayıtları için sınıf olmalı bu sınıf action, ki
         }
 
     }
-
+    //timeStamp ne için kullanılıyor. Üstte zate yeni bir time stamp kullanılmış. Burada assign edilip kullanılmıyor.
     public void setTimestamp() {
         DateTimeFormatter myFormat= DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         LocalDateTime myDateTime= LocalDateTime.now();

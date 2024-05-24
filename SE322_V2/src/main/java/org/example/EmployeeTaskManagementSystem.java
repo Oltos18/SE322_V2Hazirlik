@@ -10,7 +10,7 @@ public class EmployeeTaskManagementSystem {
         TaskHolder holder = new TaskHolder();
         EmployeeHolder employeeHolder = new EmployeeHolder();
         Employee manager = new Manager("1", "Manager", "manager@example.com","123", "Manager");
-        Employee employee1 = new Worker ("2", "John Doe", "john@example.com", "456", "Software Developer", (Manager) manager);
+        Worker employee1 = new Worker ("2", "John Doe", "john@example.com", "456", "Software Developer", (Manager) manager);
         Employee employee2 = new Employee("3", "Jane Smith", "jane@example.com","789", "Software Developer");
 
         Task task1 = new Task("1", "Complete project report", 5);
@@ -47,6 +47,9 @@ public class EmployeeTaskManagementSystem {
         task1.addSubTask(subtask1);
         task2.addSubTask(subtask2);
 
+        ((Manager) manager).GiveTask(employee1,task5);
+        employee1.CompleteTask(task5);
+
         System.out.println("Welcome to the Employee Task Management System!");
         System.out.println("Are you a manager or an employee? Enter 'manager' or 'worker':");
         String userType = scanner.nextLine().toLowerCase();
@@ -71,6 +74,7 @@ public class EmployeeTaskManagementSystem {
                         System.out.println("9. Separate Task to Subtasks");
                         System.out.println("10. Complete Task");
                         System.out.println("11. Exit");
+                        System.out.println("12. Show completed tasks");
                         System.out.print("Enter your choice: ");
                         int choice = scanner.nextInt();
                         scanner.nextLine();
@@ -184,6 +188,8 @@ public class EmployeeTaskManagementSystem {
                                 System.out.println("Exiting...");
                                 managerRunning = false;
                                 break;
+                            case 12:
+                                holder.showCompletedTask();
                             default:
                                 System.out.println("Invalid choice. Please enter a number between 1 and 10.");
                                 break;

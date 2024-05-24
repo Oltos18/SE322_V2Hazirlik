@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -21,7 +22,10 @@ public class Task implements TaskComponent {
     private boolean assigned = false;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     LocalTime startTime = LocalTime.parse("08:00", formatter);
-    LocalTime endTime = LocalTime.parse("17:00", formatter);
+    LocalTime endTime = LocalTime.parse("19:00", formatter);
+    //
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime endDate;
 
     public Task(String taskId, String description,int point) {
         this.taskId = taskId;
@@ -90,9 +94,20 @@ public class Task implements TaskComponent {
 
     public void setStatus(TaskStatus taskStatus){
         status=taskStatus;
+        if (status == TaskStatus.DONE){
+            setEndTime();
+        }
     }
     public TaskStatus getStatus(){
         return status;
+    }
+
+    public void setEndTime(){
+        endDate = LocalDateTime.now();
+    }
+
+    public LocalDateTime getEndDate(){
+        return endDate;
     }
 
     public int getTaskPoint() {
