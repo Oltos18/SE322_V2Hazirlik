@@ -2,7 +2,8 @@ package org.example;
 
 import java.util.ArrayList;
 
-public class EmployeeHolder {
+public class EmployeeHolder { //for to keep track of employees on the system. It is singleton
+
     private static ArrayList<Employee> arrayList = new ArrayList<>();
 
     public static void AddToArraylist(Employee emp){
@@ -20,7 +21,7 @@ public class EmployeeHolder {
         }
     }
 
-    public static Employee getEmployee(int index){
+    public static Employee getEmployee(int index){ //returns ONLY the REQUIRED employee
         if (index >= 0 && index < arrayList.size()) {
             return arrayList.get(index);
         } else {

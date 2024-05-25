@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 class Manager extends Employee{
-    HashMap<Worker,Task> WaitingForApprove = new HashMap<>();
+    HashMap<Worker,Task> WaitingForApprove = new HashMap<>();  //the tasks which is completed (by CompleteTask method of worker) worker class comes here
     Scanner scanner = new Scanner(System.in);
 
     public Manager(String id, String name, String contactDetails, String password, String jobRole){
@@ -14,6 +14,7 @@ class Manager extends Employee{
     }
 
     // bunun çalışması için bizim employeeleri tuttuğumuz bir genel arrayden, input olarak verilen employee objesini silmemiz lazım
+    // halledildi
     public Employee FireEmployee(int index){
         Employee deletedEmployee = EmployeeHolder.getEmployee(index);
         EmployeeHolder.RemoveFromArrayList(EmployeeHolder.getEmployee(index));
@@ -21,9 +22,12 @@ class Manager extends Employee{
     }
 
     //bunun icinde yaratınca genel bir employee arrayi varsa içine atabilir ya da return ettigi yerde eklenebilir
+    //halledildi. return ettigi yerde EmployeeHolder clasina ekleniyor
     public Employee CreateEmployee(String EmployeeID, String name,String password ,String ContactDetail, String jobRole){
         return new Employee(EmployeeID, name, password,ContactDetail, jobRole);
     }
+
+    //
     public Task CreateTask(String ID, String desc, int point){
         return new Task(ID, desc, point);
     }
@@ -60,7 +64,7 @@ class Manager extends Employee{
         }
     }
 
-    public void AddToWaitingForApprove(Worker worker,Task task){
+    public void AddToWaitingForApprove(Worker worker,Task task){ //This is for adding the tasks, which referred as completed by worker, to waiting for approve hashmap
         WaitingForApprove.put(worker, task);
     }
 
@@ -122,7 +126,7 @@ class Manager extends Employee{
     }//endFunction
 
 
-    public int getIndex(ArrayList<Task> tasks){
+    public int getIndex(ArrayList<Task> tasks){ //This is a function created just for the block code repetition
         ArrayList<Task> tempList = tasks;
         int choice = scanner.nextInt();
         while (choice> tempList.size() || choice<0){
@@ -132,7 +136,7 @@ class Manager extends Employee{
         return choice;
     }
 
-    public boolean isOk(int choice){
+    public boolean isOk(int choice){ //This is a function created just for the block code repetition
         System.out.println("You enter "+ choice + "Is this what you want? \"Y\" or \"N\"");
         String choice2 = scanner.nextLine();
         choice2.toUpperCase();
@@ -155,7 +159,7 @@ class Manager extends Employee{
         task.getSubTasks().addAll(subTasks);
     }
 
-    public boolean chooseUpdate(){
+    public boolean chooseUpdate(){ //This is a function created just for the block code repetition
         System.out.println("What do you want to change? For Description enter \"D\". For Employee please \"E\"");
         String choice2 = scanner.nextLine();
 

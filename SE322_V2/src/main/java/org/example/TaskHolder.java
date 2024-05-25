@@ -2,8 +2,16 @@ package org.example;
 
 import java.util.ArrayList;
 
-class TaskHolder{
+class TaskHolder{  //Holds all the task in the system
     ArrayList<Task> arrayList = new ArrayList<>();
+
+    public void AddToArraylist(Task task){
+        arrayList.add(task);
+    }
+
+    public Task getTask(int index) {
+        return arrayList.get(index);
+    }
 
     public void showUnAssigned(){ //prints all unassigned task in the main tasklist
         int index = 0;
@@ -45,10 +53,6 @@ class TaskHolder{
         return temp;
     }
 
-    public void AddToArraylist(Task task){
-        arrayList.add(task);
-    }
-
     public static void showTasks(ArrayList<Task> tasks){
         for (int i = 0; i< tasks.size();i++){
             Task task = tasks.get(i);
@@ -56,10 +60,6 @@ class TaskHolder{
                     "  " + task.getDescription()+ "\n" +
                     "  " + task.getEmpList() );
         }
-    }
-
-    public Task getTask(int index) {
-        return arrayList.get(index);
     }
 
     public void showCompletedTask(){

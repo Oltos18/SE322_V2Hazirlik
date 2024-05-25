@@ -11,7 +11,8 @@ public class Task implements TaskComponent {
     private String description;
     private String workerComment;
 
-    private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)    private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
+    private List<TaskComponent> subTasks;  //Bunu Composite Interface liğinden dolayı TaskComponenttan alır.(sinem)
+    // private boolean assigned; // Sinem'in kodundan geldi bunu ve alakalı şeyleri silmedim
     public enum TaskStatus{
         TODO,INPROGRESS,DONE
     }
@@ -22,8 +23,7 @@ public class Task implements TaskComponent {
     private boolean assigned = false;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     LocalTime startTime = LocalTime.parse("08:00", formatter);
-    LocalTime endTime = LocalTime.parse("19:00", formatter);
-    //
+    LocalTime endTime = LocalTime.parse("17:00", formatter);
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     LocalDateTime endDate;
 
@@ -37,7 +37,6 @@ public class Task implements TaskComponent {
         taskPoint = point;
         scanner = new Scanner(System.in);
     }
-
 
     // Getters and setters for task attributes
     public String getTaskId() {
@@ -66,25 +65,6 @@ public class Task implements TaskComponent {
         subTasks.remove(task);
     }
 
-    public boolean isCurrentTimeValid(){
-        LocalTime currentTime = LocalTime.now();
-
-        if (startTime.isBefore(endTime)) {
-            return !currentTime.isBefore(startTime) && !currentTime.isAfter(endTime);
-        } else { // Handles the case where the time range crosses midnight
-            return !currentTime.isBefore(startTime) || !currentTime.isAfter(endTime);
-        }
-    }
-    @Override
-    public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
-        if(isCurrentTimeValid()){
-            this.setAssigned(true);
-            employee.addTaskArray(this);
-            System.out.println("Task "+ taskId +" assigned to employee:\n"+employee.getName());
-        } else {
-            System.out.println("Current time is not in work hours! (08:00-17:00)");
-        }
-    }
     public boolean isAssigned() {
         return assigned;
     }
@@ -105,7 +85,6 @@ public class Task implements TaskComponent {
     public void setEndTime(){
         endDate = LocalDateTime.now();
     }
-
     public LocalDateTime getEndDate(){
         return endDate;
     }
@@ -115,6 +94,13 @@ public class Task implements TaskComponent {
     }
     public void setTaskPoint(int taskPoint) {
         this.taskPoint = taskPoint;
+    }
+
+    //When manager want to update description it should use this
+    public void setDescription(){
+        System.out.println("Please enter new description");
+        String newDescription = scanner.nextLine();
+        description = newDescription;
     }
 
     public ArrayList<Employee> getEmpList() {
@@ -128,6 +114,33 @@ public class Task implements TaskComponent {
         }
         else {
             assigned = false;
+        }
+    }
+
+    public String getWorkerComment() {
+        return workerComment;
+    }
+    public void setWorkerComment(String workerComment) {
+        this.workerComment = workerComment;
+    }
+
+    public boolean isCurrentTimeValid(){ // Checks if the time is in worker hours
+        LocalTime currentTime = LocalTime.now();
+
+        if (startTime.isBefore(endTime)) {
+            return !currentTime.isBefore(startTime) && !currentTime.isAfter(endTime);
+        } else { // Handles the case where the time range crosses midnight
+            return !currentTime.isBefore(startTime) || !currentTime.isAfter(endTime);
+        }
+    }
+    @Override
+    public void assignTask(Employee employee) { //Görev atayacak (sinem) ve bunu output verir
+        if(isCurrentTimeValid()){
+            this.setAssigned(true);
+            employee.addTaskArray(this);
+            System.out.println("Task "+ taskId +" assigned to employee:\n"+employee.getName());
+        } else {
+            System.out.println("Current time is not in work hours! (08:00-17:00)");
         }
     }
 
@@ -149,37 +162,11 @@ public class Task implements TaskComponent {
         }
     }
 
-    public String getWorkerComment() {
-        return workerComment;
-    }
-    public void setWorkerComment(String workerComment) {
-        this.workerComment = workerComment;
-    }
-
     public void showAssignedPeople(){
         for (int i = 0; i< empList.size();i++){
             Employee emp = empList.get(i);
             System.out.println(i + "-" + emp.getId() + " : " + emp.getName());
         }
-    }
-
-    // toString method to represent task information as a string
-    @Override
-    public String toString() {
-        return "Task{" +
-                "taskId='" + taskId + '\'' +
-                ", description='" + description + '\'' +
-                ", subTasks=" + subTasks +
-                ", assigned=" + assigned +
-                ", comment= " + getWorkerComment() +
-                '}';
-    }
-
-    //When manager want to update description it should use this
-    public void setDescription(){
-        System.out.println("Please enter new description");
-        String newDescription = scanner.nextLine();
-        description = newDescription;
     }
 
     //when manager wanted to update  empList it should
@@ -220,6 +207,18 @@ public class Task implements TaskComponent {
             }
         }
         return choice;
+    }
+
+    // toString method to represent task information as a string
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId='" + taskId + '\'' +
+                ", description='" + description + '\'' +
+                ", subTasks=" + subTasks +
+                ", assigned=" + assigned +
+                ", comment= " + getWorkerComment() +
+                '}';
     }
 }
 

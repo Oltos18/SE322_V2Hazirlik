@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Report {
+public class Report { //This is for weekly or daily report
     Scanner reportScanner = new Scanner(System.in);
     ArrayList<Employee> employees;
     Calendar calendar = Calendar.getInstance();

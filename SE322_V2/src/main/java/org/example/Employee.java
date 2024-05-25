@@ -87,11 +87,11 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         goal.setAssigned(true);
     }
 
-    public List<Task> getCompletedTasks() {
+    public List<Task> getCompletedTasks() { // this will return the completed tasks of worker
         return completedTask;
     }
 
-    public void addCompletedTasks(Task task) {
+    public void addCompletedTasks(Task task) { //this will be used while differentiating the tasks and completed tasks
         if (task != null) {
             this.completedTask.add(task);
         } else {
@@ -99,14 +99,14 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
         }
     }
 
-    public void ViewAssignedTasks(){
+    public void ViewAssignedTasks(){ // this mainly for worker class to see his or her task
         for(int i=0;i < taskArray.size();i++){
             System.out.println(i + "-Task ID is " + getTaskArray().get(i).getTaskId()+ " Task Description is " + getTaskArray().get(i).getDescription());
         }
     }
 
     //Bu methodu Workera mı yoksa Managera mı koyacağımıza karar verememiştik ben Employee koydum direkt yeri değişebilir ileride
-    public void CompleteTask(Task task){
+    public void CompleteTask(Task task){  //this will be overloaded at the worker class. This refers only the main functionality of it
         task.setStatus(Task.TaskStatus.DONE);
         completedTask.add(task);
         taskArray.remove(task);
