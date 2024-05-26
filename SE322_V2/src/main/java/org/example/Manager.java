@@ -36,7 +36,7 @@ class Manager extends Employee{
     public  void updateEmployee(Employee employee){
         int temp_input;
         System.out.println();
-        System.out.println("To change employee ID press 1 \nTo change employee name press 2 \nTo change employee contact detail press 3 \nTo change employee job role press 4 \n");
+        System.out.println("To change employee ID press 1 \nTo change employee name press 2 \nTo change employee password press 3 \nTo change employee contact detail press 4 \nTo change employee job role press 5 \n");
         temp_input = scanner.nextInt();
         if (temp_input==1){
             int temp_input_2;
@@ -50,13 +50,19 @@ class Manager extends Employee{
             temp_input_string_2= scanner.nextLine();
             employee.setName(temp_input_string_2);
         }
-        else if(temp_input==3){
+        else if(temp_input == 3){
+            String temp_input_string_3="";
+            System.out.println("Enter new password");
+            temp_input_string_3= scanner.nextLine();
+            employee.setPassword(temp_input_string_3);
+        }
+        else if(temp_input==4){
             String temp_input_string_3;
             System.out.println("Enter new contact detail");
             temp_input_string_3= scanner.nextLine();
             employee.setContactDetails(temp_input_string_3);
         }
-        else if(temp_input==4){
+        else if(temp_input==5){
             String temp_input_string_4;
             System.out.println("Enter new job role");
             temp_input_string_4= scanner.nextLine();

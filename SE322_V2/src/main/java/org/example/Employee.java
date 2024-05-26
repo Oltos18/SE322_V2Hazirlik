@@ -107,7 +107,6 @@ class Employee { // ViewUnAssigned yapılmadı + separateTask diye bi method var
 
     //Bu methodu Workera mı yoksa Managera mı koyacağımıza karar verememiştik ben Employee koydum direkt yeri değişebilir ileride
     public void CompleteTask(Task task){  //this will be overloaded at the worker class. This refers only the main functionality of it
-        task.setStatus(Task.TaskStatus.DONE);
         completedTask.add(task);
         taskArray.remove(task);
     }
