@@ -10,8 +10,6 @@ public class EmployeeTaskManagementSystem {
         Scanner scanner = new Scanner(System.in);
         TaskHolder holder = new TaskHolder();
         EmployeeHolder employeeHolder = new EmployeeHolder();
-        Report report = null;
-
         Employee manager = new Manager("1", "Manager", "manager@example.com", "123", "Manager");
         Employee employee1 = new Worker("2", "John Doe", "john@example.com", "456", "Software Developer", (Manager) manager);
         Employee employee2 = new Worker("3", "Jane Smith", "jane@example.com", "789", "Software Developer", (Manager) manager);
@@ -94,8 +92,7 @@ public class EmployeeTaskManagementSystem {
                 System.out.println("9. Separate Task to Subtasks");
                 System.out.println("10. Complete Task");
                 System.out.println("11. Show completed tasks");
-                System.out.println("12. Set report time");
-                System.out.println("13. Exit");
+                System.out.println("12. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -130,19 +127,8 @@ public class EmployeeTaskManagementSystem {
                         String ID = scanner.nextLine();
                         System.out.println("Please enter name of new Employee:");
                         String name = scanner.nextLine();
-
-                        String newPassword;
-                        while(true){    //this part is specifically for password part
-                            System.out.println("Please enter password of new Employee:");
-                            newPassword = scanner.nextLine();
-                            if(isPasswordValid(newPassword)){
-                                break;
-                            }
-                            else{
-                                System.out.println("This password is not valid");
-                            }
-                        }
-
+                        System.out.println("Please enter password of new Employee:");
+                        String newPassword = scanner.nextLine();
                         System.out.println("Please enter contact details of new Employee:");
                         String contactDetails = scanner.nextLine();
                         System.out.println("Please enter job role of new Employee:");
@@ -238,9 +224,6 @@ public class EmployeeTaskManagementSystem {
                         new Log("Displayed completed tasks", EmployeeHolder.getEmployee(employeeIndex).getName());
                         break;
                     case 12:
-                        report = new Report();
-                        break;
-                    case 13:
                         System.out.println("Exiting...");
                         managerRunning = false;
                         new Log("Quit from the system", EmployeeHolder.getEmployee(employeeIndex).getName());
@@ -318,7 +301,7 @@ public class EmployeeTaskManagementSystem {
         scanner.close();
     }
 
-    public static boolean isPasswordValid(String password) {
+    public boolean isPasswordValid(String password) {
         boolean hasUppercase = false;
         boolean hasLowercase = false;
         boolean hasDigit = false;
