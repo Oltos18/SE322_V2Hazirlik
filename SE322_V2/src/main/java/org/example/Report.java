@@ -1,8 +1,6 @@
 package org.example;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -49,9 +47,11 @@ public class Report { //This is for weekly or daily report
 
         if(tempString.toLowerCase().replace(" ","").equals("day")){
             calendar.add(Calendar.DATE,1);
+            System.out.println("Report scheduled daily");
         }
         else if(tempString.toLowerCase().replace(" ","").equals("week")){
             calendar.add(Calendar.DATE,7);
+            System.out.println("Report scheduled weekly");
         }
     }
 

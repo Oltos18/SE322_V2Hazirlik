@@ -1,0 +1,11 @@
+28-05-2024 19:02:52 - Action: Entered to the system, By: Manager
+28-05-2024 19:02:55 - Action: Displayed assigned tasks, By: Manager
+28-05-2024 19:02:58 - Action: Displayed unassigned tasks, By: Manager
+28-05-2024 19:03:02 - Action: Quit from the system, By: Manager
+28-05-2024 19:03:30 - Action: Entered to the system, By: Manager
+28-05-2024 19:03:37 - Action: Report scheduled, By: Manager
+28-05-2024 19:04:40 - Action: Entered to the system, By: Manager
+28-05-2024 19:04:46 - Action: Report scheduled, By: Manager
+28-05-2024 19:08:44 - Action: Entered to the system, By: Manager
+28-05-2024 19:11:20 - Action: Created a new employee with ID number: 1111, By: Manager
+28-05-2024 19:11:22 - Action: Quit from the system, By: Manager
