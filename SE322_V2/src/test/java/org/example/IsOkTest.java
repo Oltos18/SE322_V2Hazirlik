@@ -26,5 +26,4 @@ class IsOkTest {
         assertNotEquals(false, result);
     }
 
-
 }
