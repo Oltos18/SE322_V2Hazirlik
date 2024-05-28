@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 class Manager extends Employee{
     HashMap<Worker,Task> WaitingForApprove = new HashMap<>();  //the tasks which is completed (by CompleteTask method of worker) worker class comes here
     Scanner scanner = new Scanner(System.in);
+    public static LocalTime currentTime;
 
     public Manager(String id, String name, String contactDetails, String password, String jobRole){
         super(id, name, contactDetails, password, jobRole);

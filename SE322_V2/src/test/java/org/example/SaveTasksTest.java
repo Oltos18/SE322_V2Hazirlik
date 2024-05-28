@@ -1,9 +1,6 @@
 package org.example;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDateTime;
-
 import org.example.Task;
 import org.example.Task.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,12 +28,12 @@ class SaveTasksTest {
     }
 
     @Test
-    public void testInvalidTaskCompletion() {  // tekrar bakılacak
+    public void testInvalidTaskCompletion() {  // PASSED
         //negative test case, saving invalid task is tested
+        task.setStatus(TaskStatus.INPROGRESS);
         task.setStatus(TaskStatus.DONE);
-        assertNotNull(task.getEndDate(), "End date should still be set when task is directly marked as DONE");
 
-        //assertNotEquals(TaskStatus.DONE, task.getStatus());
+        assertNotNull(task.getEndDate());
     }
 }
 

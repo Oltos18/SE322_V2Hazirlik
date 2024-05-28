@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ViewAssignedTasksTest {
     @Test
     void viewAssignedTasksPositive() { // PASSED
-        // Positive test case, viewing existing assigned tasks is tested
+        //Positive test case, viewing existing assigned tasks is tested
         Employee employee = new Employee("1", "John Black", "john@office.com", "123", "Software Developer");
         Task task1 = new Task("1", "Complete project report", 5);
         Task task2 = new Task("2", "Prepare presentation slides", 10);
@@ -22,7 +22,7 @@ public class ViewAssignedTasksTest {
 
     @Test
     void viewAssignedTasksNegative() { // PASSED
-        // Negative test case, viewing assigned tasks when there are none is tested
+        //Negative test case, viewing assigned tasks when there are none is tested
         Employee employee = new Employee("1", "John Black", "john@office.com",  "123","Software Developer");
         Employee employeeWithoutTasks = new Employee("2", "Mary Smith", "mary@office.com", "123", "Software Developer");
         List<Task> emptyAssignedTasks = employeeWithoutTasks.getTaskArray();

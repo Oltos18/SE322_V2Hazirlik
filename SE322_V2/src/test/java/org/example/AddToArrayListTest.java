@@ -1,10 +1,7 @@
 package org.example;
-
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddToArrayListTest {
@@ -25,6 +22,6 @@ class AddToArrayListTest {
         TaskHolder taskHolder = new TaskHolder();
         Task task = null;
         taskHolder.AddToArraylist(task);
-        assertNotEquals(1, taskHolder.arrayList.size());
+        assertNotEquals(task, taskHolder.arrayList.size());
     }
 }

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ViewUnassignedTasksTest {
     @Test
     void viewUnAssignedTasksPositive() { // PASSED
-        // Positive test case, testing viewing unassigned tasks
+        //Positive test case, testing viewing unassigned tasks
         TaskHolder taskHolder = new TaskHolder();
         Task task1 = new Task("1", "Complete project report", 5);
         Task task2 = new Task("2", "Prepare presentation slides", 10);
@@ -28,7 +28,7 @@ public class ViewUnassignedTasksTest {
 
     @Test
     void viewUnAssignedTasksNegative() { // PASSED
-        // Negative test case, viewing unassigned tasks when there is nothing to view
+        //Negative test case, viewing unassigned tasks when there is nothing to view
         TaskHolder taskHolder = new TaskHolder();
         TaskHolder emptyTaskHolder = new TaskHolder();
         List<Task> emptyUnassignedTasks = new ArrayList<>();

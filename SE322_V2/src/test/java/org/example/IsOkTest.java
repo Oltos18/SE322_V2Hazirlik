@@ -1,14 +1,11 @@
 package org.example;
-
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class IsOkTest {
