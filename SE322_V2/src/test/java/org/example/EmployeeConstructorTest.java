@@ -29,13 +29,13 @@ public class EmployeeConstructorTest {
     public void testEmployeeConstructorNullID() { // PASSED
         //Negative test case, handles null inputs
         String id = null;
-        String name = "John Doe";
-        String contactDetails = "john.doe@example.com";
+        String name = "John Smith";
+        String contactDetails = "john.doe@office.com";
         String password = "SecureP@ssw0rd";
         String jobRole = "Developer";
 
         Employee employee = new Employee(id, name, contactDetails, password, jobRole);
 
-        assertNull(employee.getId(), "The ID should be null.");
+        assertNull(employee.getId());
     }
 }

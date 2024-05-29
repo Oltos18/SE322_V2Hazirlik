@@ -11,7 +11,7 @@ public class ManagerConstructorTest {
         //Positive test case
         String id = "1";
         String name = "Alice Smith";
-        String contactDetails = "alice.smith@example.com";
+        String contactDetails = "alice.smith@office.com";
         String password = "SecureP@ssw0rd";
         String jobRole = "Manager";
 
@@ -26,19 +26,19 @@ public class ManagerConstructorTest {
         assertTrue(manager.getTaskArray().isEmpty());
         assertTrue(manager.WaitingForApprove.isEmpty());
     }
-    
+
     @Test
     public void testManagerConstructorNullName() { // PASSED
         //Negative test case, handling null inputs
         String id = "1";
         String name = null;
-        String contactDetails = "alice.smith@example.com";
+        String contactDetails = "alice.smith@office.com";
         String password = "SecureP@ssw0rd";
         String jobRole = "Manager";
 
         Manager manager = new Manager(id, name, contactDetails, password, jobRole);
 
-        assertNull(manager.getName(), "The name should be null.");
+        assertNull(manager.getName());
     }
 
 
